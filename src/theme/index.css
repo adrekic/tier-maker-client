@@ -1,0 +1,12 @@
+@import "./background.css";
+@import "./base.css";
+@import "./primary.css";
+
+body {
+    background: var(--color-background);
+    color: var(--base-12)
+}
+
+*:focus {
+    outline: none;
+}

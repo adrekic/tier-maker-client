@@ -1,1 +1,7 @@
 @import "tailwindcss";
+@import "./theme/index.css";
+
+:root, body, #root {
+    width: 100svw;
+    height: 100svh;
+}
