@@ -1,0 +1,40 @@
+name: code-quality
+on:
+    pull_request:
+        types: [opened, reopened, synchronize]
+jobs:
+  lint:
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "yarn"
+        run: yarn install --frozen-lockfile
+
+      - name: "yarn lint"
+        run: yarn lint > lint.diff
+
+      - name: "get diff"
+        if: failure()
+        run: |
+            cat lint.diff
+            exit 1
+  format:
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "yarn"
+        run: yarn install --frozen-lockfile
+
+      - name: "yarn format"
+        run: yarn format > format.diff
+
+      - name: "get diff"
+        if: failure()
+        run: |
+            cat format.diff
+            exit 1
+         
